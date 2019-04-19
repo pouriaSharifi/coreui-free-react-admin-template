@@ -18,12 +18,19 @@ import {
 import navigation from '../../_nav';
 // routes config
 import routes from '../../routes';
+import {connect} from "react-redux";
+import {SetAdminProfile, UnSetAdminProfile} from "../../redux/actions";
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
 const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
 class DefaultLayout extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this)
+
+  }
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
@@ -88,4 +95,10 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(
+  mapStateToProps,{SetAdminProfile,UnSetAdminProfile})(DefaultLayout);
